@@ -1,0 +1,17 @@
+from src.masks import get_mask_card_number, get_mask_account
+
+def get_date(input_date):
+    """Функция принимает на вход дату и время и выдает дату в порядке ДД.ММ.ГГГГ"""
+    return input_date.split("T")[0].replace("-", ".")
+
+
+def get_account(user_card: str) -> None:
+    """Принимать один аргумент — строку, содержащую тип и номер карты или счета.
+    Возвращать строку с замаскированным номером.
+    """
+    if "Счет" in user_card:
+        get_acc_numb = f"{user_card[:4]} {get_mask_account(user_card[5:])}"
+        return get_acc_numb
+    else:
+        get_card_num = f"{user_card[:-15]} {get_mask_card_number(user_card[-16:])}"
+        return get_card_num
