@@ -7,6 +7,7 @@ list_dict = [
 
 
 def filter_by_state(list_dict: list, state: str='EXECUTED') -> list:
+    """Функция возвращает список словарей по ключу"""
     result = []
     for item in list_dict:
         if item['state'] == state:
@@ -14,6 +15,9 @@ def filter_by_state(list_dict: list, state: str='EXECUTED') -> list:
     return result
 
 
-def sort_by_date(list_dict: list, ) -> list:
-    pass
-    return
+def sort_by_date(list_dict: list, order: str='DESC') -> list:
+    """Функция сортирует список словарей по дате."""
+    result = sorted(list_dict, key=lambda x: x['date'], reverse=(order == 'DESC'))
+    return result
+
+
