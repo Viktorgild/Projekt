@@ -6,12 +6,12 @@ list_dict = [
 ]
 
 
-def filter_by_state(list_dict: list, ) -> list:
-    pass
-    return
-
-
-
+def filter_by_state(list_dict: list, state: str='EXECUTED') -> list:
+    result = []
+    for item in list_dict:
+        if item['state'] == state:
+            result.append(item)
+    return result
 
 
 def sort_by_date(list_dict: list, ) -> list:
