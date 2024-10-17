@@ -9,7 +9,7 @@ from src.processing import filter_by_state, list_dict, sort_by_date
 # print(mask_account_card(str("Visa Classic 6831982476737658")))
 # print(mask_account_card(str("Visa Platinum 8990922113665229")))
 # print(mask_account_card(str("Visa Gold 5999414228426353")))
-# print(mask_account_card(str("Счет 73654108430135874305")))
+
 
 print(
     sort_by_date(
