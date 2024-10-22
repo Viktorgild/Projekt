@@ -1,6 +1,5 @@
 from src.masks import get_mask_account, get_mask_card_number
 
-
 def get_date(input_date: str) -> str:
     """Функция принимает на вход дату и время и выдает дату в порядке ДД.ММ.ГГГГ"""
     return input_date.split("T")[0].replace("-", ".")
