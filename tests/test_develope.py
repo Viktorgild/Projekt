@@ -56,3 +56,4 @@ def test_sort_by_date(list_dictt: list, sort_order: bool = True) -> None:
             {"id": 594226727, "state": "qwerty", "date": "2018-09-12T21:27:25.241689"},
             {"id": 939719570, "state": "EXECUTED", "date": "2018-06-30T02:08:58.425572"},
         ]
+#
