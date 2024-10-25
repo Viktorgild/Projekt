@@ -15,6 +15,24 @@
 ## Тесты проекта:
 Для тестов была использована библиотека: 
 # pytest
+результаты тестирования:
+
+src\__init__.py              0      0   100%
+
+src\masks.py                 4      0   100%
+
+src\processing.py           10      2    80%
+
+src\widget.py                9      0   100%
+
+tests\__init__.py            0      0   100%
+
+tests\conftest.py            5      0   100%
+
+tests\test_develope.py      36      0   100%
+--------------------------------------------
+TOTAL                       64      2    97%
+
 =======
 >>>>>>> origin/feature/develop
 ## Установка:
