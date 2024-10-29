@@ -2,6 +2,8 @@ from src.widget import get_date, mask_account_card
 from src.processing import filter_by_state, list_dict, sort_by_date
 from src.masks import get_mask_card_number
 from src.masks import get_mask_account
+from src.generators import filter_by_currency, transaction_descriptions, card_number_generator
+from tests.conftest import transactions
 
 #print(get_date(str("02:26:18.671407T2024.03.11")))
 #print(mask_account_card(str("Maestro 1596837868705199")))
@@ -30,4 +32,4 @@ from src.masks import get_mask_account
 #        ]
 #   )
 #)
-print(filter_by_state(list_dict, ""))
+#print(filter_by_state(list_dict, ""))
