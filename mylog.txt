@@ -1,0 +1,44 @@
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func okmy_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func error: my_func() missing 2 required positional arguments: 'x' and 'y'. input: (),{}my_func ok
+my_func okmy_func okmy_func ok 
+my_func error: '_io.TextIOWrapper' object is not callable. input: (14, 22),{}
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 
+my_func ok 

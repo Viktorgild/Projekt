@@ -1,9 +1,12 @@
 import pytest
 
+
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
+from src.decorators import log
+
 
 
 def test_get_mask_card_number() -> None:
@@ -85,7 +88,7 @@ if __name__ == "__main__":
     pytest.main()
 
 
-def test_filter_by_currency(transactions) -> None:
+def test_filter_by_currency(transactions: list) -> None:
     empty_string_transactions = list(filter_by_currency(transactions, "USD"))
     assert empty_string_transactions == [
         {
@@ -143,7 +146,7 @@ def test_filter_by_currency(transactions) -> None:
     ]
 
 
-def test_transaction_descriptions(transactions):
+def test_transaction_descriptions(transactions: list) -> None:
 
     descriptions = transaction_descriptions(transactions)
     for _ in range(len(transactions)):
@@ -158,3 +161,45 @@ def test_performance():
 
     iterations = 1000
     assert iterations > 500, "Функция должна выполнить более 500 итераций за разумное время."
+
+
+
+def test_success(capsys):
+    """Тест успешного выполнения функции."""
+    @log()
+    def my_func(x: int, y: int) -> int:
+        return x + y
+
+    result = my_func(2, 3)
+    assert result == 5
+    captured = capsys.readouterr()
+    expected_output = 'my_func ok \n\n'
+    assert captured.out == expected_output
+
+
+
+def test_log_success(capsys):
+    @log()
+    def my_function(x, y):
+        return x + y
+
+    result = my_function(2, 3)
+    assert result == 5
+    captured = capsys.readouterr()
+    expected_output = f"{my_function.__name__} ok \n\n"
+    assert captured.out == expected_output
+
+def test_log_failure(capsys):
+    # Здесь мы тестируем поведение при возникновении исключения
+    with pytest.raises(Exception):
+        @log(filename='test.log')
+        def my_function():
+            raise Exception("Test Error")
+
+        my_function()
+        captured = capsys.readouterr()
+        expected_error_message = "my_function error: Test Error : ()"
+        assert captured.err == expected_error_message
+        with open('test.log', 'r') as file:
+            file_content = file.read()
+            assert expected_error_message in file_content

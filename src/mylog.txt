@@ -1,0 +1,18 @@
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func ok
+my_func error: my_func() missing 1 required positional argument: 'y'. input: ('3, 2',),{}my_func ok
+my_func error: my_func() missing 2 required positional arguments: 'x' and 'y'. input: (),{}my_func error: my_func() missing 2 required positional arguments: 'x' and 'y'. input: (),{}my_func error: my_func() missing 2 required positional arguments: 'x' and 'y'. input: (),{}
+my_func error: my_func() missing 2 required positional arguments: 'x' and 'y'. input: (),{}
+my_func error: my_func() missing 2 required positional arguments: 'x' and 'y'. input: (),{}
+my_func ok
+my_func ok
