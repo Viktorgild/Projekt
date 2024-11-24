@@ -1,18 +1,18 @@
 from collections.abc import Callable
 from functools import wraps
-
-
+import logging
 
 def log(filename: str | None = None) -> Callable:
     """
-       Декоратор для логирования результатов выполнения функции.
+    Декоратор для логирования результатов выполнения функции.
 
-       Параметры:
-           filename (str | None): имя файла, в который будут записываться результаты выполнения функций. Если filename не указан или равен None, результаты выводятся на экран.
+    Параметры:
+        filename (str | None): имя файла, в который будут записываться результаты выполнения функций. Если filename не указан или равен None, результаты выводятся на экран.
 
-       Возвращает:
-           Callable: декорированную функцию.
-       """
+    Возвращает:
+        Callable: декорированную функцию.
+    """
+
     def my_decorator(func: Callable) -> Callable:
         @wraps(func)
         def wrapper(*args, **kwargs):
@@ -42,5 +42,5 @@ def log(filename: str | None = None) -> Callable:
 def my_function(a, b):
     return a / b
 
-result = my_function(1, 8)
 
+result = my_function(1, 8)
