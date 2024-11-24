@@ -1,12 +1,11 @@
 import pytest
-
+from unittest.mock import patch
 
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
 from src.decorators import log
-
 
 
 def test_get_mask_card_number() -> None:
@@ -203,3 +202,5 @@ def test_log_failure(capsys):
         with open('test.log', 'r') as file:
             file_content = file.read()
             assert expected_error_message in file_content
+
+
