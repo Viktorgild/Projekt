@@ -1,6 +1,6 @@
 import json
-from typing import Any
 import os
+from typing import Any
 
 
 def get_financial_transactions_data(file_path: str) -> Any:

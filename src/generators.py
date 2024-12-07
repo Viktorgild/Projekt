@@ -9,30 +9,15 @@ logger.addHandler(file_handler)
 
 
 transactions = [
-    {
-        "description": "Покупка в магазине",
-        "operationAmount": {
-            "currency": {
-                "code": "USD"
-            },
-            "value": 100
-        }
-    },
-    {
-        "description": "Перевод другу",
-        "operationAmount": {
-            "currency": {
-                "code": "EUR"
-            },
-            "value": 50
-        }
-    }
+    {"description": "Покупка в магазине", "operationAmount": {"currency": {"code": "USD"}, "value": 100}},
+    {"description": "Перевод другу", "operationAmount": {"currency": {"code": "EUR"}, "value": 50}},
 ]
 
 
 def filter_by_currency(transactions, currency):
     """Функция, которая принимает на вход список словарей, представляющих транзакции.
-    Функция должна возвращать итератор, который поочерёдно выдаёт транзакции, где валюта операции соответствует заданной (например, USD).
+    Функция должна возвращать итератор, который поочерёдно выдаёт транзакции, где валюта
+    операции соответствует заданной (например, USD).
     """
     logger.info("Starting filter_by_currency function")
     filtered_transactions = []
@@ -40,6 +25,8 @@ def filter_by_currency(transactions, currency):
         if transaction["operationAmount"]["currency"]["code"] == currency:
             filtered_transactions.append(transaction)
     return filtered_transactions
+
+
 filtered_transactions = filter_by_currency(transactions, "USD")
 for transaction in filtered_transactions:
     print("- ", transaction["description"])
@@ -63,6 +50,7 @@ def card_number_generator(start, end):
     for i in range(start, end + 1):
         card_num = str(i).zfill(16)
         yield card_num[:4] + " " + card_num[4:8] + " " + card_num[8:12] + " " + card_num[12:16]
+
 
 card_numbers = card_number_generator(1000, 2000)
 print("Номера карт:")

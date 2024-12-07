@@ -1,24 +1,16 @@
-
-transaktion = {
-  "operationAmount": {
-    "amount": 100,
-    "currency": {
-      "code": "USD"
-    }
-  },
-  "anotherOperationAmount": {
-    "amount": 100,
-    "currency": {
-      "code": "RUB"
-    }
-  }
-}
+import logging
+import os
+from venv import logger
 
 import requests
-import os
 from dotenv import load_dotenv
-import logging
-from venv import logger
+
+
+transaktion = {
+    "operationAmount": {"amount": 100, "currency": {"code": "USD"}},
+    "anotherOperationAmount": {"amount": 100, "currency": {"code": "RUB"}},
+}
+
 
 logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler("..\\logs\\external_api.log", encoding="utf-8")
@@ -29,6 +21,7 @@ logger.addHandler(file_handler)
 
 load_dotenv()
 
+
 def get_conversion(transaction: dict) -> float:
     code = transaction["operationAmount"]["currency"]["code"]
     amount = transaction["operationAmount"]["amount"]
@@ -36,9 +29,7 @@ def get_conversion(transaction: dict) -> float:
 
         url = f"https://api.apilayer.com/exchangerates_data/convert?to=RUB&from={code}&amount={amount}"
 
-        headers = {
-            "apikey": os.getenv("API_KEY")
-        }
+        headers = {"apikey": os.getenv("API_KEY")}
 
         response = requests.request("GET", url, headers=headers)
 
@@ -48,4 +39,6 @@ def get_conversion(transaction: dict) -> float:
     else:
         logger.debug(f"Сумма операции уже в рублях: {amount}")
         return round(amount, 2)
+
+
 print(get_conversion(transaktion))

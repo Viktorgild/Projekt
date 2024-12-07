@@ -1,7 +1,6 @@
 import logging
 from venv import logger
 
-
 logger.setLevel(logging.INFO)
 file_handler = logging.FileHandler("..\\logs\\processing.log", encoding="utf-8")
 file_formatter = logging.Formatter("%(asctime)s - %(name)s -%(levelname)s: %(message)s")
@@ -25,16 +24,21 @@ def filter_by_state(list_dict: list, state: str = "EXECUTED") -> list:
             result.append(item)
     logging.info("Фильтрация списка словарей.")
     return result
+
+
 filtered_list = filter_by_state(list_dict)
 print("Отфильтрованный список:")
 for item in filtered_list:
     print("- ", item["id"], ":", item["state"])
+
 
 def sort_by_date(list_dict: list, order: str = "DESC") -> list:
     """Функция сортирует список словарей по дате."""
     result = sorted(list_dict, key=lambda x: x["date"], reverse=(order == "DESC"))
     logging.info("Сортировка списка словарей по дате.")
     return result
+
+
 filtered_list = filter_by_state(list_dict)
 sorted_list = sort_by_date(filtered_list)
 print("Отсортированный список:")
