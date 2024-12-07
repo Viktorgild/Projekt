@@ -1,6 +1,5 @@
 from collections.abc import Callable
 from functools import wraps
-import logging
 
 def log(filename: str | None = None) -> Callable:
     """
