@@ -1,14 +1,6 @@
 import json
 from typing import Any
 import os
-import logging
-from venv import logger
-
-logger.setLevel(logging.INFO)
-file_handler = logging.FileHandler("..\\logs\\utils.log", encoding="utf-8")
-file_formatter = logging.Formatter("%(asctime)s - %(name)s -%(levelname)s: %(message)s")
-file_handler.setFormatter(file_formatter)
-logger.addHandler(file_handler)
 
 
 def get_financial_transactions_data(file_path: str) -> Any:
@@ -28,11 +20,9 @@ def get_financial_transactions_data(file_path: str) -> Any:
             if transactions == 0 or type(transactions) != list:
                 return _list
             else:
-                logger.info("Данные о транзакциях успешно загружены.")
                 return transactions
         except json.JSONDecodeError:
             print("invalid JSON data")
-            logger.error("Обнаружены неверные данные JSON.")
             return _list
 
 

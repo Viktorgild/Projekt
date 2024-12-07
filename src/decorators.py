@@ -1,6 +1,8 @@
 from collections.abc import Callable
 from functools import wraps
 
+
+
 def log(filename: str | None = None) -> Callable:
     """
     Декоратор для логирования результатов выполнения функции.
@@ -43,3 +45,4 @@ def my_function(a, b):
 
 
 result = my_function(1, 8)
+
