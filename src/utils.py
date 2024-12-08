@@ -17,7 +17,7 @@ def get_financial_transactions_data(file_path: str) -> Any:
     with open(file_path, "r", encoding="utf-8") as file:
         try:
             transactions = json.load(file)
-            if transactions == 0 or type(transactions) != list:
+            if not isinstance(transactions, list):
                 return _list
             else:
                 return transactions
@@ -28,5 +28,5 @@ def get_financial_transactions_data(file_path: str) -> Any:
 
 if __name__ == "__main__":
     path_to_file = os.path.join(os.path.dirname(__file__), "data", "operations.json")
-    transactions_data = get_financial_transactions_data(r"C:\Users\35347\PycharmProjects\Projekt\data\operations.json")
+    transactions_data = get_financial_transactions_data(path_to_file)
     print(transactions_data)

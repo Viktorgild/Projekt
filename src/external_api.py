@@ -5,7 +5,6 @@ from venv import logger
 import requests
 from dotenv import load_dotenv
 
-
 transaktion = {
     "operationAmount": {"amount": 100, "currency": {"code": "USD"}},
     "anotherOperationAmount": {"amount": 100, "currency": {"code": "RUB"}},
