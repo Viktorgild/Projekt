@@ -1,11 +1,10 @@
 import pytest
-from unittest.mock import patch
 
+from src.decorators import log
 from src.generators import card_number_generator, filter_by_currency, transaction_descriptions
 from src.masks import get_mask_account, get_mask_card_number
 from src.processing import filter_by_state, sort_by_date
 from src.widget import get_date, mask_account_card
-from src.decorators import log
 
 
 def test_get_mask_card_number() -> None:
@@ -162,9 +161,9 @@ def test_performance():
     assert iterations > 500, "Функция должна выполнить более 500 итераций за разумное время."
 
 
-
 def test_success(capsys):
     """Тест успешного выполнения функции."""
+
     @log()
     def my_func(x: int, y: int) -> int:
         return x + y
@@ -172,9 +171,8 @@ def test_success(capsys):
     result = my_func(2, 3)
     assert result == 5
     captured = capsys.readouterr()
-    expected_output = 'my_func ok \n\n'
+    expected_output = "my_func ok \n\n"
     assert captured.out == expected_output
-
 
 
 def test_log_success(capsys):
@@ -188,10 +186,12 @@ def test_log_success(capsys):
     expected_output = f"{my_function.__name__} ok \n\n"
     assert captured.out == expected_output
 
+
 def test_log_failure(capsys):
     # Здесь мы тестируем поведение при возникновении исключения
     with pytest.raises(Exception):
-        @log(filename='test.log')
+
+        @log(filename="test.log")
         def my_function():
             raise Exception("Test Error")
 
@@ -199,8 +199,6 @@ def test_log_failure(capsys):
         captured = capsys.readouterr()
         expected_error_message = "my_function error: Test Error : ()"
         assert captured.err == expected_error_message
-        with open('test.log', 'r') as file:
+        with open("test.log", "r") as file:
             file_content = file.read()
             assert expected_error_message in file_content
-
-
