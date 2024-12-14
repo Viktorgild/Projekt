@@ -1,7 +1,5 @@
 import json
 
-import pandas as pd
-
 
 def avg_age_by_gender(df):
     avg_age_male = df[df["Sex"] == "male"]["Age"].mean()
