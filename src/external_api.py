@@ -1,9 +1,11 @@
 import logging
 import os
-from venv import logger
+from logging import getLogger
 
 import requests
 from dotenv import load_dotenv
+
+logger = getLogger(__name__)
 
 transaktion = {
     "operationAmount": {"amount": 100, "currency": {"code": "USD"}},
@@ -38,6 +40,3 @@ def get_conversion(transaction: dict) -> float:
     else:
         logger.debug(f"Сумма операции уже в рублях: {amount}")
         return round(amount, 2)
-
-
-print(get_conversion(transaktion))
