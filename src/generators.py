@@ -1,4 +1,5 @@
 import logging
+from typing import Dict, Iterator
 from venv import logger
 
 logger.setLevel(logging.INFO)
@@ -14,25 +15,18 @@ transactions = [
 ]
 
 
-def filter_by_currency(transactions, currency):
+def filter_by_currency(transactions: list[dict], currency: str) -> Iterator[Dict]:
     """Функция, которая принимает на вход список словарей, представляющих транзакции.
     Функция должна возвращать итератор, который поочерёдно выдаёт транзакции, где валюта
     операции соответствует заданной (например, USD).
     """
     logger.info("Starting filter_by_currency function")
-    filtered_transactions = []
     for transaction in transactions:
         if transaction["operationAmount"]["currency"]["code"] == currency:
-            filtered_transactions.append(transaction)
-    return filtered_transactions
+            yield transactions
 
 
-filtered_transactions = filter_by_currency(transactions, "USD")
-for transaction in filtered_transactions:
-    print("- ", transaction["description"])
-
-
-def transaction_descriptions(transactions):
+def transaction_descriptions(transactions: list[dict]) -> Iterator[Dict]:
     """Генератор, который принимает список словарей с транзакциями и возвращает описание каждой операции по очереди."""
     logger.info("Starting transaction_descriptions function")
     for transaction in transactions:
