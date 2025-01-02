@@ -12,21 +12,7 @@ def read_csv(file_path):
     return data
 
 
-file_path = "../data/test_csv.csv"
-data_list = read_csv(file_path)
-
-output_string = "\n".join([str(item) for item in data_list])
-print(data_list)
-
-
 def read_excel(file_path):
     df = pd.read_excel(file_path)
     data_dict = df.to_dict("records")
     return data_dict
-
-
-file_path = "../data/transactions_excel.xlsx"
-data_dict_list = read_excel(file_path)
-
-output_string = "\n".join([str(item) for item in data_dict_list])
-print(data_dict_list)

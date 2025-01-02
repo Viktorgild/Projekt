@@ -9,21 +9,19 @@ file_handler.setFormatter(file_formatter)
 logger.addHandler(file_handler)
 
 
-transactions = [
-    {"description": "Покупка в магазине", "operationAmount": {"currency": {"code": "USD"}, "value": 100}},
-    {"description": "Перевод другу", "operationAmount": {"currency": {"code": "EUR"}, "value": 50}},
-]
-
-
-def filter_by_currency(transactions: list[dict], currency: str) -> Iterator[Dict]:
+def filter_by_currency(transactions: list, currency: str) -> Iterator:
     """Функция, которая принимает на вход список словарей, представляющих транзакции.
     Функция должна возвращать итератор, который поочерёдно выдаёт транзакции, где валюта
     операции соответствует заданной (например, USD).
     """
-    logger.info("Starting filter_by_currency function")
+    # logger.info("Starting filter_by_currency function")
     for transaction in transactions:
-        if transaction["operationAmount"]["currency"]["code"] == currency:
-            yield transactions
+        try:
+            if transaction["operationAmount"]["currency"]["code"] == currency:
+                yield transaction
+        except KeyError:
+            if transaction["currency_code"] == currency:
+                yield transaction
 
 
 def transaction_descriptions(transactions: list[dict]) -> Iterator[Dict]:
@@ -33,20 +31,9 @@ def transaction_descriptions(transactions: list[dict]) -> Iterator[Dict]:
         yield transaction["description"]
 
 
-transaction_descriptions_generator = transaction_descriptions(transactions)
-for description in transaction_descriptions_generator:
-    print("- ", description)
-
-
 def card_number_generator(start, end):
     """Генератор, который выдаёт номера банковских карт в формате XXXX XXXX XXXX XXXX, где X — цифра номера карты."""
     logger.info("Starting card_number_generator function with start: {}, end: {}".format(start, end))
     for i in range(start, end + 1):
         card_num = str(i).zfill(16)
         yield card_num[:4] + " " + card_num[4:8] + " " + card_num[8:12] + " " + card_num[12:16]
-
-
-card_numbers = card_number_generator(1000, 2000)
-print("Номера карт:")
-for card_num in card_numbers:
-    print("- ", card_num)

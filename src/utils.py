@@ -1,5 +1,4 @@
 import json
-import os
 from typing import Any
 
 
@@ -26,7 +25,4 @@ def get_financial_transactions_data(file_path: str) -> Any:
             return _list
 
 
-if __name__ == "__main__":
-    path_to_file = os.path.join(os.path.dirname(__file__), "data", "operations.json")
-    transactions_data = get_financial_transactions_data(path_to_file)
-    print(transactions_data)
+#

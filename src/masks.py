@@ -14,13 +14,7 @@ def get_mask_card_number(card_number: str) -> str:
     return card_number[:4] + " " + card_number[4:6] + "**" + " " + "****" + " " + card_number[-4:]
 
 
-print(get_mask_card_number(str("7158300734726758")))
-
-
 def get_mask_account(account_number: str) -> str | None:
     """Функция принимает на вход номер счета и возвращает его маску"""
     logger.info("Маскируем счет клиента")
     return "**" + str(account_number)[-4:]
-
-
-print(get_mask_account(str("Maestro 1596837868705199")))

@@ -16,11 +16,6 @@ def get_date(input_date: str) -> str:
     return input_date.split("T")[0].replace("-", ".")
 
 
-input_date = "2023-07-14T15:30:00"
-result_date = get_date(input_date)
-print("Дата в нужном формате:", result_date)
-
-
 def mask_account_card(user_card: str) -> str | None:
     """Принимать один аргумент — строку, содержащую тип и номер карты или счета.
     Возвращать строку с замаскированным номером.
@@ -33,8 +28,3 @@ def mask_account_card(user_card: str) -> str | None:
         get_card_num = f"{user_card[:-16]} {get_mask_card_number(user_card[-16:])}"
         logger.info("Номер карты")
         return get_card_num
-
-
-user_card = "Счет: 1234567890123456"
-result_card_or_acc = mask_account_card(user_card)
-print("Замаскированный номер:", result_card_or_acc)
