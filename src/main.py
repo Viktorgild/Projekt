@@ -1,3 +1,4 @@
+from counter_transactions import get_taransctions_type_count
 from generators import filter_by_currency
 from src.csv_xlsx import read_csv, read_excel
 from src.processing import filter_by_state, sort_by_date
@@ -94,14 +95,13 @@ def main():
 
     print("Распечатываю итоговый список транзакций...")
     print(f"Всего банковских операций в выборке: {len(trans_word)}\n")
-
     for transaction in trans_word:
         try:
             print(f"Дата: {transaction['date']}\n")
             print("Описание: ")
             print(transaction["description"])
             print("\nСчёт отправителя: ")
-            print(transaction.get("from",""))
+            print(transaction.get("from", ""))
             print("Счёт получателя: ")
             print(transaction["to"])
 
@@ -116,6 +116,9 @@ def main():
             print(f"\nСумма: {amount} {currency}")
         except KeyError:
             print("Ошибка при получении данных или данные отсутствуют")
+    count = get_taransctions_type_count(trans_word)
+    for i in count:
+        print(i,':',count[i])
 
 
 if __name__ == "__main__":
